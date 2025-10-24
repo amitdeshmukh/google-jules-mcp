@@ -1,5 +1,5 @@
 import { FastMCP } from 'fastmcp';
-import { addTools } from './tools';
+import { addTools } from './tools.js';
 
 const server = new FastMCP({
   name: 'google-jules-api-mcp-server',

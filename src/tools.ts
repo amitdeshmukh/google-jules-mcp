@@ -1,6 +1,6 @@
 import { FastMCP, UserError } from 'fastmcp';
 import { z } from 'zod';
-import * as julesApi from './jules-api';
+import * as julesApi from './jules-api.js';
 
 export const addTools = (server: FastMCP) => {
   server.addTool({
