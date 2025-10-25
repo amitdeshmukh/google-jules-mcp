@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const JULES_API_KEY = process.env.JULES_API_KEY;
 const JULES_API_BASE_URL = 'https://jules.googleapis.com/v1alpha';

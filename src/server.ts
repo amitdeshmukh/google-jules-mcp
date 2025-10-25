@@ -64,7 +64,7 @@ export async function bootstrap(createServerFactory?: () => { start: (options: {
   serverInstance.start({
     transportType: 'stdio',
   });
-  console.log('Google Jules API MCP Server started with STDIO transport.');
+  console.error('Google Jules API MCP Server started with STDIO transport.');
 }
 
 if (!process.env.JEST_WORKER_ID) {
