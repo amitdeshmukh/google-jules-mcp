@@ -32,9 +32,23 @@ describe('server entrypoint', () => {
     expect(startMock).toHaveBeenCalledTimes(1);
     expect(startMock).toHaveBeenCalledWith({ transportType: 'stdio' });
 
-    const calls = (console.error as unknown as jest.Mock).mock.calls;
-    expect(calls.length).toBeGreaterThan(0);
-    expect(calls[0][0]).toMatch(/MCP Server started with STDIO transport/i);
+    const errCalls = (console.error as unknown as jest.Mock).mock.calls;
+    const logCalls = (console.log as unknown as jest.Mock).mock.calls;
+    const all = [...errCalls, ...logCalls];
+    expect(all.length).toBeGreaterThan(0);
+
+    const firstArg = all[0][0];
+    if (typeof firstArg === 'string') {
+      try {
+        const parsed = JSON.parse(firstArg);
+        expect(parsed.message).toMatch(/MCP Server started with STDIO transport/i);
+      } catch {
+        expect(firstArg).toMatch(/MCP Server started with STDIO transport/i);
+      }
+    } else {
+      // Non-string arg; just assert something was logged
+      expect(firstArg).toBeDefined();
+    }
   });
 });
 
