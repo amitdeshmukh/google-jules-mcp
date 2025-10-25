@@ -14,7 +14,6 @@ describe('MCP Tools', () => {
     server = new FastMCP({ name: 'test-server', version: '1.0.0' });
     addTools(server);
     // This is a bit of a hack to get access to the execute functions
-    // In a real-world scenario, you might have a more direct way to test this
     toolFunctions = (server as any).tools.reduce((acc: any, tool: any) => {
       acc[tool.name] = tool.execute;
       return acc;
