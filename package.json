@@ -1,11 +1,15 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@amitdeshmukh/google-jules-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Google Jules API (FastMCP)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "release": "npm version patch && npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -15,6 +19,18 @@
   "author": "",
   "license": "ISC",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/**"
+  ],
+  "bin": {
+    "google-jules-mcp": "dist/server.js"
+  },
   "bugs": {
     "url": "https://github.com/amitdeshmukh/google-jules-mcp/issues"
   },
