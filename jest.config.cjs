@@ -1,13 +1,17 @@
 module.exports = {
-  preset: 'ts-jest/presets/default-esm',
+  preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
-  setupFiles: ['./jest.setup.js'],
+  setupFiles: ['./jest.setup.cjs'],
+  moduleNameMapper: {
+    '^fastmcp$': '<rootDir>/__mocks__/fastmcp.js',
+    '^\.\/jules-api\.js$': '<rootDir>/src/jules-api.ts',
+  },
   transform: {
-    '^.+\\.tsx?$': [
+    '^.+\\.[tj]sx?$': [
       'ts-jest',
       {
-        useESM: true,
+        tsconfig: '<rootDir>/tsconfig.test.json',
       },
     ],
   },
