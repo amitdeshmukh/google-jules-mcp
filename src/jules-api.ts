@@ -28,7 +28,7 @@ export const getSource = async (sourceName: string) => {
   return response.data;
 };
 
-export const createSession = async (prompt: string, source: string) => {
+export const createSession = async (prompt: string, source: string, requirePlanApproval?: boolean) => {
   const response = await apiClient.post('/sessions', {
     prompt,
     sourceContext: {
@@ -38,6 +38,8 @@ export const createSession = async (prompt: string, source: string) => {
       },
     },
     automationMode: 'AUTO_CREATE_PR',
+    // Expose an explicit flag for requiring plan approval before execution.
+    ...(typeof requirePlanApproval === 'boolean' ? { requirePlanApproval } : {}),
   });
   return response.data;
 };

@@ -109,7 +109,8 @@ Create a session:
   "tool": "create_session",
   "params": {
     "prompt": "Refactor the codebase to improve type safety and add tests",
-    "source": "sources/github/my-org/my-repo"
+    "source": "sources/github/my-org/my-repo",
+    "requirePlanApproval": true
   }
 }
 ```

@@ -55,10 +55,11 @@ export const addTools = (server: FastMCP) => {
     parameters: z.object({
       prompt: z.string(),
       source: z.string(),
+      requirePlanApproval: z.boolean().optional(),
     }),
-    execute: async ({ prompt, source }) => {
+    execute: async ({ prompt, source, requirePlanApproval }) => {
       try {
-        const session = await julesApi.createSession(prompt, source);
+        const session = await julesApi.createSession(prompt, source, requirePlanApproval);
         return JSON.stringify(session, null, 2);
       } catch (error: any) {
         throw new UserError(`Error creating session: ${error.message}`);
